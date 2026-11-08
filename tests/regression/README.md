@@ -29,3 +29,13 @@ Use `docker exec -u 1000 -w /var/www/html opencartvn-web php ...` for PHP in the
 No migration, real charge, mail delivery or concurrent idempotency guarantee is part of these tests. Test keys/IDs are synthetic fixtures. See docs/improvements/P0-B-payment-confirmation.md for compatibility limitations (including PayPal unavailable and manual capture).
 
 The provider/controller suite now includes 14 malformed-proof cases (65 total): Stripe amount fields must be JSON integers; both transaction IDs must be nonempty strings without whitespace/control characters; currencies must be strings; Braintree monetary responses must use decimal notation within the supported precision. These are provider contract robustness checks, not a claim of live gateway interception. Existing successful USD/VND and Braintree fixtures must still pass.
+
+## Frontend CSRF (P0-C)
+
+```sh
+php tests/regression/frontend_csrf.php
+node tests/regression/frontend_csrf_client.js
+python3 tests/regression/frontend_csrf_browser.py
+```
+
+PHP uses real startup/identity/router/controllers with in-memory spies, including valid/invalid tokens, destructive actions, method aliases and PIN/IP/read navigation. Node validates the shared-policy helper. Optional browser regression requires Python Playwright and `/usr/bin/chromium` (available in the prepared cloud environment); it runs actual bundled jQuery/CSRF JS with every HTTP request intercepted, never against app data. As with the other PHP runners, use `docker exec -u 1000 -w /var/www/html opencartvn-web php ...` if PHP is only installed in the development container.

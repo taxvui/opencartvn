@@ -35,7 +35,8 @@ $_['action_pre_action']  = array(
 	'startup/error',
 	'startup/event',
 	'startup/maintenance',
-	'startup/seo_url'
+	'startup/seo_url',
+	'startup/csrf'
 );
 
 // Action Events
@@ -52,4 +53,33 @@ $_['action_event'] = array(
 	'language/*/after' => array(
 		'event/translation'
 	)
+);
+
+// Mutating actions reviewed against the actual frontend controllers. Keep the
+// same list available to the client so legacy links/AJAX submit POST instead.
+$_['csrf_post_routes'] = array(
+    'account/extension/delete', 'account/extension/deletecomment', 'account/extension/upload',
+    'account/store/delete', 'account/store/secret', 'account/showcase/delete',
+    'account/payment/add', 'account/payment/makedefault', 'account/payment/delete',
+    'account/subscription/update', 'account/subscription/cancelsubscription',
+    'account/subscription/renewsubscription', 'account/subscription/restartsubscription',
+    'account/subscription/createbackup', 'account/subscription/restorebackup', 'account/subscription/removebackup',
+    'account/subscription/createdatabasebackup', 'account/subscription/restoredatabasebackup', 'account/subscription/removedatabasebackup',
+    'account/subscription/adddomain', 'account/subscription/deletedomain',
+    'account/subscription/pointdomain', 'account/subscription/unpointdomain',
+    'account/logout/index', 'account/security/reset', 'checkout/payment/prepare', 'checkout/payment/confirm',
+    'cms/blog/addcomment', 'cms/blog/addreply', 'cms/blog/removecomment',
+    'marketplace/extension/addcomment', 'marketplace/extension/addreply',
+    'marketplace/extension/removecomment', 'marketplace/extension/removereply'
+);
+// These actions redirect after successful writes; other mutating endpoints
+// already have AJAX handlers and keep their JSON responses.
+$_['csrf_navigation_routes'] = array(
+    'account/extension/delete', 'account/store/delete', 'account/showcase/delete',
+    'account/subscription/deletedomain', 'account/subscription/pointdomain',
+    'account/subscription/unpointdomain', 'account/logout/index'
+);
+$_['csrf_read_routes'] = array(
+    'account/account/index', 'account/extension/index', 'account/store/index',
+    'account/subscription/index', 'account/payment/index'
 );

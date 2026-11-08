@@ -1,5 +1,7 @@
 # Audit kỹ thuật opencartvn
 
+**P0-C hiện hành:** đã có patch frontend CSRF và kiểm thử pipeline/UI; chưa đổi admin/API/guest auth CSRF. Xem [biên bản P0-C](../improvements/P0-C-frontend-csrf.md). Chưa deploy hoặc nghiệm thu production.
+
 **P0-B hiện hành:** các đường tạo đơn không proof đã được chặn local; PayPal hiện unavailable, manual capture chưa được hỗ trợ như Paid. Xem [biên bản và giới hạn](../improvements/P0-B-payment-confirmation.md). Chưa nghiệm thu sandbox, SEC-01/PAY-03/DB-01 vẫn mở.
 
 **Tiến độ sau audit:** PAY-02 đã có patch tối thiểu loại bỏ tạo đơn qua trang success và test local; chờ nghiệm thu, chưa đóng mọi tiêu chí của finding. PAY-01/SEC-01 vẫn OPEN. Xem [kế hoạch và biên bản nhóm P0-A](../improvements/P0-A-result-pages.md). Nội dung audit bên dưới giữ bằng chứng trước sửa.

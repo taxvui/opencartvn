@@ -6,7 +6,7 @@ Audit nền: `docs/audit/`, commit `7fcbe3b27bb7ac04e10895f9d5a64fa964659fbe`. C
 |---|---|---|---|
 | P0-A | PAY-02: bỏ tạo đơn từ result page, giữ route/template/links | Red→green; không write/consume pending qua success hoặc refresh; regression UI/401; đánh giá compatibility PayPal | Đã kiểm tra local; người dùng yêu cầu tiếp tục sang P0-B |
 | P0-B | PAY-01: một boundary xác nhận tiền cho confirm và legacy; review PaymentGateway fallback | Mock missing credentials/error/requires_action/amount/currency/merchant mismatch không Paid; proof hợp lệ gắn đúng intent/member; legacy không bypass; sandbox staging | Đã chặn completion không proof local; PayPal unavailable, chờ review/sandbox |
-| P0-C | SEC-01: token request bất biến, CSRF/HTTP method policy cho mutations | Token thiếu/sai bị từ chối; tests với pipeline startup thật, PIN/IP, frontend và legacy AJAX | Chưa triển khai |
+| P0-C | SEC-01: token request bất biến, CSRF/HTTP method policy cho mutations | Token thiếu/sai bị từ chối; tests với pipeline startup thật, PIN/IP, frontend và legacy AJAX | Đã triển khai, kiểm tra local; chờ review/nghiệm thu |
 | P1-A | SEC-02/08: TLS trust và runtime credentials/config | CA hợp lệ pass, untrusted fail; secrets không vào log; overlay/hosting backward compatibility | Chưa triển khai |
 | P1-B | SEC-03/04/05/07: auth/hash/session/upload; tách từng subgroup | Legacy login + rehash, throttle TTL, session rotation/concurrency, quota/signature tests; từng subgroup nghiệm thu riêng | Chưa triển khai |
 | P1-C | PAY-03 + DB-01: durable intent/idempotency, transaction/outbox | Fault injection, replay/concurrency, reconciliation; DDL rehearsal/backup/restore trước migration production; không destructive migration | Chưa triển khai |
@@ -24,6 +24,8 @@ Trong cùng P0, chọn PAY-02 trước vì đường lỗi nhỏ, có test xác 
 
 [P0-A — kết quả, test, compatibility và các file thay đổi](P0-A-result-pages.md).
 
-[P0-B — kết quả và các giới hạn integration](P0-B-payment-confirmation.md). Chưa triển khai nhóm P0-C.
+[P0-B — kết quả và các giới hạn integration](P0-B-payment-confirmation.md). Trạng thái P0-C hiện hành xem biên bản riêng bên dưới.
 
-Review tiếp trong cùng P0-B: 14 test proof sai kiểu được viết trước sửa, hiện suite provider/controller đạt 65/65. Chưa chuyển P0-C; sandbox chưa chạy vì test credentials chưa có cấu hình. Xem phần bổ sung của biên bản P0-B.
+Review tiếp trong cùng P0-B: 14 test proof sai kiểu được viết trước sửa, hiện suite provider/controller đạt 65/65. P0-B sandbox chưa chạy vì test credentials chưa có cấu hình; P0-C hiện được triển khai theo yêu cầu tiếp tục làm việc. Xem phần bổ sung của biên bản P0-B.
+
+[P0-C — frontend CSRF](P0-C-frontend-csrf.md): triển khai sau yêu cầu tiếp tục làm việc; chưa chuyển nhóm P1.

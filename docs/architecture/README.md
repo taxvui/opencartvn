@@ -1,5 +1,7 @@
 # Kiến trúc và logic thực thi opencartvn
 
+**Cập nhật P0-C:** xem [current-frontend-csrf.md](current-frontend-csrf.md) cho pre-action/token flow hiện hành. Diagram baseline trước sửa vẫn được giữ để đối chiếu.
+
 **Cập nhật P0-B:** xem [current-payment-confirmation.md](current-payment-confirmation.md) cho luồng confirm/gateway/legacy hiện hành; sơ đồ/inventory baseline bên dưới vẫn là chứng cứ trước sửa.
 
 **Cập nhật working tree P0-A:** success result page đã bỏ tạo đơn. Các sơ đồ/inventory bên dưới giữ snapshot trước sửa; trạng thái hiện hành được mô tả tại [current-payment-result.md](current-payment-result.md).

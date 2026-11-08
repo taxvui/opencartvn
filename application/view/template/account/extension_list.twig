@@ -38,7 +38,7 @@
                       <td class="text-left">{{ extension.name }}</td>
                       <td class="text-left">{% if extension.publish %}<span class="label label-success">Enabled</span> {% else %} <span class="label label-danger">Disable</span> {% endif %} </td>
                       <td class="text-left">{{ extension.date_added }}</td>
-                      <td class="text-right"><a href="{{ extension.view }}" class="btn btn-info">View</a> <a href="{{ extension.edit }}" class="btn btn-primary">Edit</a> <button type="button" onclick="confirm('Are you sure?') ? location = '{{ extension.delete }}' : '';" class="btn btn-danger">Delete</button></td>
+                      <td class="text-right"><a href="{{ extension.view }}" class="btn btn-info">View</a> <a href="{{ extension.edit }}" class="btn btn-primary">Edit</a> <button type="submit" formaction="{{ extension.delete }}" data-csrf-post="{{ extension.delete }}" onclick="return confirm('Are you sure?')" class="btn btn-danger">Delete</button></td>
                     </tr>
                   {% endfor %}
                 {% else %}

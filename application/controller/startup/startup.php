@@ -134,7 +134,7 @@ class ControllerStartupStartup extends Controller {
 
 			$GLOBALS['__oc_active_member_token'] = $this->session->data['member_token'];
 			$this->url->setToken('member_token=' . $this->session->data['member_token']);
-			$this->request->get['member_token'] = $this->session->data['member_token'];
+			// Keep the submitted token unchanged; outbound links may use the session token.
 
 			$route = isset($this->request->get['route']) ? (string)$this->request->get['route'] : 'common/home';
 			$exempt_routes = array(

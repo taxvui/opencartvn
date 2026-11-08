@@ -1,6 +1,12 @@
 <?php
 class ControllerCommonHeader extends Controller {
 	public function index() {
+		$data['csrf_policy'] = json_encode(array(
+			'post' => $this->config->get('csrf_post_routes') ?: array(),
+			'navigation' => $this->config->get('csrf_navigation_routes') ?: array()
+		));
+		$data['csrf_member_token'] = $this->member->isLogged() ? ($this->session->data['member_token'] ?? '') : '';
+
 		$data['title'] = $this->document->getTitle();
 
 		if ($this->request->server['HTTPS']) {
